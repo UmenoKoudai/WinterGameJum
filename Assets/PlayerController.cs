@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]float _overTime; // combo‚ª“rØ‚ê‚é‚Ü‚Å‚Ì§ŒÀŠÔ
     [SerializeField] int _score; //‰ÁZ‚·‚éscore
     public int _playerId; //player‚ÌID
-    //GameManager _gm;
+    GameManager _gm;
+    [SerializeField] float _heal; //‰ñ•œ—Ê
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +30,13 @@ public class PlayerController : MonoBehaviour
         _pos1 = _playerPosition[1].transform.position.y;
         _pos2 = _playerPosition[2].transform.position.y;
         this.transform.position = _playerPosition[1].transform.position; //‰ŠúˆÊ’u‚ÖˆÚ“®
-        //_gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMove();
-        if(_fuel <= 0)
-        {
-            //SceneSwitcher.SceneMove();
-        }
         if(_timeStart == true)
         {
             _timer += Time.deltaTime;
@@ -92,7 +89,7 @@ public class PlayerController : MonoBehaviour
             if(_comboCount >= 1 && _timeStart == false)
             {
                 _timeStart = true;
-                //_gm.AddScore(_score, _comboCount);
+                _gm.AddScore(_score, _comboCount);
             }
             if(_timer > _overTime)
             {
@@ -102,8 +99,15 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _timer = 0;
-                //_gm.AddScore(_score, _comboCount);
+                _gm.AddScore(_score, _comboCount);
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            _fuel += _heal;
         }
     }
 }

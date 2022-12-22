@@ -9,7 +9,7 @@ public class ItemGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerJudge = GetComponent<PlayerController>()._playerId;
+        _playerJudge = GameObject.FindObjectOfType<PlayerController>()._playerId;
         if(_playerJudge == 2)
         {
             Instantiate(_itemPrefab[Random.Range(0,_itemPrefab.Length-1)]);

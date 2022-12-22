@@ -12,8 +12,8 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         ///まっつーのスクリプトからスコアとコンボをもらったらここに入れる
-        _comboText.text = "a";
-        _scoreText.text = "a";
+        _comboText.text = GameManager.MaxCombo.ToString();
+        _scoreText.text = GameManager.TotalScore.ToString();
         _maxScoreText.text = "a";
     }
 

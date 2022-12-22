@@ -4,24 +4,19 @@ using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject[] _stagePrefab;
-    [SerializeField] float _generateTime;
-    float _timer;
+    [SerializeField] GameObject[] _itemPrefab;
+    int _playerJudge;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _timer += Time.deltaTime;
-        if(_timer >= _generateTime)
+        _playerJudge = GetComponent<PlayerController>()._playerId;
+        if(_playerJudge == 2)
         {
-            _timer = 0;
-            Instantiate(_stagePrefab[Random.Range(0, _stagePrefab.Length)]);
-            
+            Instantiate(_itemPrefab[Random.Range(0,_itemPrefab.Length-1)]);
+        }
+        else
+        {
+            Instantiate(_itemPrefab[4]);
         }
     }
 }

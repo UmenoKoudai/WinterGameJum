@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public int _playerId; //player‚ÌID
     GameManager _gm;
     [SerializeField] float _heal; //‰ñ•œ—Ê
+    Animator _anim;
+    [SerializeField] string _name;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         _pos2 = _playerPosition[2].transform.position.y;
         this.transform.position = _playerPosition[1].transform.position; //‰ŠúˆÊ’u‚ÖˆÚ“®
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -80,6 +83,7 @@ public class PlayerController : MonoBehaviour
         }
         _playerId = id;
         _players[id].SetActive(true);
+        _anim.Play(_name);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     float _timer; // ŠÔ‚ÌŒv‘ª
     [SerializeField]float _overTime; // combo‚ª“rØ‚ê‚é‚Ü‚Å‚Ì§ŒÀŠÔ
     [SerializeField] int _score; //‰ÁZ‚·‚éscore
+    public int _playerId; //player‚ÌID
     //GameManager _gm;
     // Start is called before the first frame update
     void Start()
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             _players[i].SetActive(false);
         }
+        _playerId = id;
         _players[id].SetActive(true);
     }
     private void OnTriggerStay2D(Collider2D collision)
